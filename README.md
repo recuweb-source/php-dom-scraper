@@ -28,7 +28,7 @@ A simple PHP DOM scraper based on the DOMDocument class
 
 ## TODO
 
-- html -> <a>
+- html -> (a,meta)
 - css  -> @(media|import|local)
 - xml
 - rss
