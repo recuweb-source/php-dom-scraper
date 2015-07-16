@@ -113,8 +113,45 @@
 
 				$dom_contents['html:body'] = strip_single_tag($dom->savehtml($body->item(0)),'body');
 			}
+		}
+		elseif($doc_type=='css'){
 			
+			$dom_contents['css']=parse_css_selectors($doc_contents);
 		}
 		
 		return $dom_contents;	
+	}
+
+	function parse_css_selectors($css){
+		
+		preg_match_all('/([^\{\}]+)\{([^\}]*)\}/ims', $css, $arr);
+		
+		// TODO: @(media|import|local)
+		
+		$result = [];
+		
+		foreach ($arr[0] as $i => $x){
+			
+			$selector = trim($arr[1][$i]);
+			$rules = explode(';', trim($arr[2][$i]));
+			$rules_arr = [];
+			
+			foreach ($rules as $strRule){
+				
+				if (!empty($strRule)){
+					
+					$rule = explode(":", $strRule);
+					$rules_arr[trim($rule[0])] = trim($rule[1]);
+				}
+			}
+
+			$selectors = explode(',', trim($selector));
+			
+			foreach ($selectors as $strSel){
+				
+				$result[$strSel] = $rules_arr;
+			}
+		}
+		
+		return $result;
 	}
