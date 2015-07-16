@@ -17,11 +17,11 @@
 			
 			//-----------------parse html contents---------------
 			
-			$dom_contents['html:head'] = '';
-			$dom_contents['html:links'] = '';
-			$dom_contents['html:scripts'] = '';
-			$dom_contents['html:styles'] = '';
-			$dom_contents['html:body'] = '';
+			$dom_contents['html:head'] = [];
+			$dom_contents['html:links'] = [];
+			$dom_contents['html:scripts'] = [];
+			$dom_contents['html:styles'] = [];
+			$dom_contents['html:body'] = [];
 			
 			//-----------------parse doc_contents---------------
 			
