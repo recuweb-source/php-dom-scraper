@@ -16,11 +16,11 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
 
 ### HTML
 
-	$dom_contents['html:head'] = '';
-	$dom_contents['html:links'] = '';
-	$dom_contents['html:scripts'] = '';
-	$dom_contents['html:styles'] = '';
-	$dom_contents['html:body'] = '';
+	$dom_contents['html:head'] = [];
+	$dom_contents['html:links'] = [];
+	$dom_contents['html:scripts'] = [];
+	$dom_contents['html:styles'] = [];
+	$dom_contents['html:body'] = [];
 	
 ### CSS
 
