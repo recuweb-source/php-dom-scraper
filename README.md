@@ -1,7 +1,7 @@
 # php-dom-scraper
 A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` functions
 
-#### Support
+#### Supported
 
 - html
 - css
