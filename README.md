@@ -6,6 +6,20 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
 - html
 - css
 
+## SCHEMA
+
+### HTML
+
+	$dom_contents['html:head'] = [];
+	$dom_contents['html:links'] = [];
+	$dom_contents['html:scripts'] = [];
+	$dom_contents['html:styles'] = [];
+	$dom_contents['html:body'] = [];
+	
+### CSS
+
+	$dom_contents['css'][$media_query][$selector] = $value;
+
 ## USAGE
 
 ### HTML
@@ -52,20 +66,6 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
 			$css.= '}';				
 		}
 	}
-
-## OUTPUT
-
-### HTML
-
-	$dom_contents['html:head'] = [];
-	$dom_contents['html:links'] = [];
-	$dom_contents['html:scripts'] = [];
-	$dom_contents['html:styles'] = [];
-	$dom_contents['html:body'] = [];
-	
-### CSS
-
-	$dom_contents['css'][$media_query][$selector] = $value;
 
 ## TODO
 
