@@ -70,7 +70,7 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
 ## TODO
 
 - html -> (a,meta)
-- css  -> @(media|import|local)
+- css  -> ~~@media~~
 - xml
 - rss
 - atom
