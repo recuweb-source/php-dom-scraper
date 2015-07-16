@@ -1,13 +1,15 @@
 # php-dom-scraper
 A simple PHP DOM scraper based on the DOMDocument class
 
-## Support
+#### Support
 
-- .html
+- html
 
 ## USAGE
 
-    parse_dom_contents($html_contents,'html');
+    $html_contents = file_get_contents($url);
+    
+    $dom_contents = parse_dom_contents($html_contents,'html');
 
 ## OUTPUT
 
