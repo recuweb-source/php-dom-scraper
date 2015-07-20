@@ -61,25 +61,26 @@
 				}
 			}
 			
-			//----------parse script---------
+			//----------parse scripts---------
 		
 			$scripts = $dom->getElementsByTagName('script');
 			
 			if($scripts && 0 < $scripts->length){
 			
 				foreach($scripts as $i => $script){
-
-					if($script->hasAttributes() && $url = $script->getAttribute('src')){
+					
+					if($script->hasAttributes()){
 						
 						foreach($script->attributes as $attr){
 							
 							$name = $attr->nodeName;
-							$value = $attr->nodeValue;									
-							$dom_contents['html:scripts'][$url][$name]=$value;
+							$value = $attr->nodeValue;
+
+							$dom_contents['html:scripts'][$i][$name]=$value;
 						}
-						
-						$dom_contents['html:scripts'][$url]['string']=trim($dom->savehtml($scripts->item($i)));
 					}
+
+					$dom_contents['html:scripts'][$i]['string']=trim($dom->savehtml($scripts->item($i)));
 				}
 			}
 
