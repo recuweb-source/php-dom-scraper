@@ -9,7 +9,7 @@
 		return $str;
 	}	
 	
-	function parse_dom_contents($doc_contents='',$doc_type='html'){
+	function parse_dom_contents($doc_contents='',$doc_type='html',$doc_options=array()){
 		
 		$dom_contents= [];
 		
@@ -22,6 +22,7 @@
 			$dom_contents['html:scripts'] = [];
 			$dom_contents['html:styles'] = [];
 			$dom_contents['html:body'] = [];
+			$dom_contents['html:xpath'] = [];
 			
 			//-----------------parse doc_contents---------------
 			
@@ -55,7 +56,7 @@
 							$dom_contents['html:links'][$url][$name]=$value;
 						}
 						
-						$dom_contents['html:links'][$url]['string']=custom_trim($dom->savehtml($links->item($i)));
+						$dom_contents['html:links'][$url]['string']=trim($dom->savehtml($links->item($i)));
 					}
 				}
 			}
@@ -77,7 +78,7 @@
 							$dom_contents['html:scripts'][$url][$name]=$value;
 						}
 						
-						$dom_contents['html:scripts'][$url]['string']=custom_trim($dom->savehtml($scripts->item($i)));
+						$dom_contents['html:scripts'][$url]['string']=trim($dom->savehtml($scripts->item($i)));
 					}
 				}
 			}
@@ -100,7 +101,7 @@
 						}
 					}
 					
-					$dom_contents['html:styles'][$i]['string']=strip_single_tag(custom_trim($dom->savehtml($styles->item($i))),'style');
+					$dom_contents['html:styles'][$i]['string']=strip_single_tag(trim($dom->savehtml($styles->item($i))),'style');
 				}
 			}				
 			
@@ -112,6 +113,20 @@
 
 				$dom_contents['html:body'] = strip_single_tag($dom->savehtml($body->item(0)),'body');
 			}
+			
+			//----------parse xpath---------
+			
+			if(isset($doc_options['xpath'])){
+				
+				$xpath = new DOMXPath($dom);
+				
+				$query = $xpath->query($doc_options['xpath']);
+				
+				if(!empty($query)){
+					
+					$dom_contents['html:xpath'] = $dom->savehtml($query->item(0));
+				}
+			}			
 		}
 		elseif($doc_type=='css'){
 			
