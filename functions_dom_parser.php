@@ -224,7 +224,6 @@
 			}
 		}
 		
-		vdump($result);
 		return $result;
 	}
 	
