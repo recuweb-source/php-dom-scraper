@@ -35,7 +35,7 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
     
     	$dom_contents = parse_dom_contents($css_contents,'css');
 
-	foreach($css_selectors as $block => $selector){
+	foreach($dom_contents['css'] as $block => $selector){
 							
 		if(!is_numeric($block)){
 								
