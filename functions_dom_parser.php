@@ -147,8 +147,8 @@
 		
 			$media_blocks=parse_css_media_queries($css);
 		}
-	
-		$b=0;
+
+		$b=0;		
 		
 		if(!empty($media_blocks)){
 			
@@ -183,33 +183,48 @@
 		}
 		else{
 			
+			//---------------escape base64 images------------------
+			
+			$css=preg_replace('/(data\:[^;]+);/i','$1~£&#',$css);
+			
 			//---------------parse css selectors------------------
 			
 			preg_match_all('/([^\{\}]+)\{([^\}]*)\}/ims', $css, $arr);
 
-			foreach($arr[0] as $i => $x){
+			foreach ($arr[0] as $i => $x){
 				
 				$selector = trim($arr[1][$i]);
+				
 				$rules = explode(';', trim($arr[2][$i]));
+				
 				$rules_arr = [];
 				
-				foreach ($rules as $strRule){
+				foreach($rules as $strRule){
 					
-					if (!empty($strRule)){
+					if(!empty($strRule)){
 						
-						$rule = explode(":", $strRule);
-						$rules_arr[trim($rule[0])] = trim($rule[1]);
+						$rule = explode(":", $strRule,2);
+				
+						if(isset($rule[1])){
+							
+							$rules_arr[trim($rule[0])] = str_replace('~£&#',';',trim($rule[1]));
+						}
+						else{
+							//debug
+						}
 					}
 				}
 
 				$selectors = explode(',', trim($selector));
 				
-				foreach($selectors as $strSel){
+				foreach ($selectors as $strSel){
 					
 					$result[$b][$strSel] = $rules_arr;
 				}
 			}
 		}
+		
+		vdump($result);
 		return $result;
 	}
 	
