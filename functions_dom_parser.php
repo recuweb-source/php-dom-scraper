@@ -219,7 +219,14 @@
 				
 				foreach ($selectors as $strSel){
 					
-					$result[$b][$strSel] = $rules_arr;
+					if($media_queries===true){
+					
+						$result[$b][$strSel] = $rules_arr;
+					}
+					else{
+						
+						$result[$strSel] = $rules_arr;
+					}
 				}
 			}
 		}
