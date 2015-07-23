@@ -71,7 +71,7 @@ A simple PHP DOM scraper based on the DOMDocument class and `preg_match()` funct
 ## TODO
 
 - html -> ~~xpath~~, a, meta
-- css  -> ~~@media~~
+- css  -> ~~@media, base64 images~~
 - xml
 - rss
 - atom
