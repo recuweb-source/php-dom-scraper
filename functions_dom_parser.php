@@ -147,7 +147,9 @@
 		
 			$media_blocks=parse_css_media_queries($css);
 		}
-
+	
+		$b=0;
+		
 		if(!empty($media_blocks)){
 			
 			//---------------get css blocks-----------------
@@ -162,8 +164,6 @@
 			$css_blocks=explode('~£&#',$css_blocks);
 			
 			//---------------parse css blocks-----------------
-			
-			$b=0;
 			
 			foreach($css_blocks as $css_block){
 				
@@ -187,7 +187,7 @@
 			
 			preg_match_all('/([^\{\}]+)\{([^\}]*)\}/ims', $css, $arr);
 
-			foreach ($arr[0] as $i => $x){
+			foreach($arr[0] as $i => $x){
 				
 				$selector = trim($arr[1][$i]);
 				$rules = explode(';', trim($arr[2][$i]));
@@ -204,9 +204,9 @@
 
 				$selectors = explode(',', trim($selector));
 				
-				foreach ($selectors as $strSel){
+				foreach($selectors as $strSel){
 					
-					$result[$strSel] = $rules_arr;
+					$result[$b][$strSel] = $rules_arr;
 				}
 			}
 		}
